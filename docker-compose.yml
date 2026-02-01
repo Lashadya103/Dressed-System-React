@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  design-service:
+    build: ./backend/DesignService
+    ports:
+      - "5001:80"
+
+  quote-service:
+    build: ./backend/QuoteService
+    ports:
+      - "5002:80"
+
+  frontend:
+    build: ./frontend/dressed-ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      - design-service
+      - quote-service
